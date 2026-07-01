@@ -8546,13 +8546,11 @@
     "dev": true,
     "dev-package-names": [
         "fakerphp/faker",
-        "filp/whoops",
         "hamcrest/hamcrest-php",
         "laravel/pint",
         "laravel/sail",
         "mockery/mockery",
         "myclabs/deep-copy",
-        "nunomaduro/collision",
         "phar-io/manifest",
         "phar-io/version",
         "phpunit/php-code-coverage",
