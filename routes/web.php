@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RecordsController;
 use App\Http\Controllers\AddRecordController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 // ── Auth ──────────────────────────────────────────────────────────────
 Route::get('/login',  [AuthController::class, 'showLogin'])->name('login');
@@ -69,5 +71,15 @@ Route::middleware('auth.session')->group(function () {
         Route::post('/ip/{id}',               [AddRecordController::class, 'updateIP'])->name('ip.update');
         Route::delete('/ip/{id}',             [AddRecordController::class, 'destroyIP'])->name('ip.destroy');
     });
+
+    // Profile
+    Route::get('/profile',                   [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile',                  [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/password',         [ProfileController::class, 'changePassword'])->name('profile.password');
+
+    // User Management
+    Route::get('/users',                     [UserController::class, 'index'])->name('users.index');
+    Route::post('/users',                    [UserController::class, 'store'])->name('users.store');
+    Route::delete('/users/{id}',             [UserController::class, 'destroy'])->name('users.destroy');
 
 });

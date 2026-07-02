@@ -229,5 +229,7 @@ class DatabaseSeeder extends Seeder
                 'created_at' => $now, 'updated_at' => $now
             ]);
         }
+        // ── SEED INITIAL ADMIN USER ───────────────────────────────────
+        $this->call(UserSeeder::class);
     }
 }

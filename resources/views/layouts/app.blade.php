@@ -641,13 +641,26 @@
                 Add Records
             </a>
 
+            <!-- Settings -->
+            <div class="nav-section-label">Settings</div>
+
+            <a href="{{ route('profile.index') }}" class="nav-item {{ request()->routeIs('profile.index') ? 'active' : '' }}">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                My Profile
+            </a>
+
+            <a href="{{ route('users.index') }}" class="nav-item {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                User Management
+            </a>
+
         </nav>
 
         <div class="sidebar-footer">
             <div class="user-row">
-                <div class="user-avatar">{{ strtoupper(substr(session('username', 'A'), 0, 1)) }}</div>
+                <div class="user-avatar">{{ strtoupper(substr(session('name', session('username', 'A')), 0, 1)) }}</div>
                 <div class="user-info">
-                    <p>{{ ucfirst(session('username', 'Admin')) }}</p>
+                    <p>{{ session('name', ucfirst(session('username', 'Admin'))) }}</p>
                     <span>Administrator</span>
                 </div>
             </div>
