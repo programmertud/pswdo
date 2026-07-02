@@ -7,26 +7,21 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public $withinTransaction = false;
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('child_infos', function (Blueprint $table) {
+        Schema::create('ip_children', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('age');
             $table->string('lgu_name');
-            $table->string('category')->nullable();
+            $table->unsignedSmallInteger('year')->default(2025);
+            $table->integer('male')->nullable();
+            $table->integer('female')->nullable();
+            $table->integer('total')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('child_infos');
+        Schema::dropIfExists('ip_children');
     }
 };
