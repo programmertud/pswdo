@@ -126,13 +126,21 @@
         }
 
         .print-table th {
-            background-color: #f5a623 !important;
-            color: #000000 !important;
+            background-color: #f1f5f9 !important;
+            color: #0f2d5e !important;
             font-weight: 700;
             text-transform: uppercase;
             font-size: 8px;
             letter-spacing: 0.5px;
         }
+
+        /* Dynamic Table Header Colors */
+        .print-table.theme-survival th { background-color: #22c55e !important; color: #ffffff !important; }
+        .print-table.theme-development th { background-color: #facc15 !important; color: #000000 !important; }
+        .print-table.theme-protection th { background-color: #ef4444 !important; color: #ffffff !important; }
+        .print-table.theme-ip th { background-color: #8b4513 !important; color: #ffffff !important; }
+        .print-table.theme-disability th { background-color: #38bdf8 !important; color: #000000 !important; }
+
 
         .print-table td {
             color: #334155;
@@ -260,7 +268,7 @@
 
     <h1 class="category-title">{{ $title }}</h1>
 
-    <table class="print-table">
+    <table class="print-table theme-{{ $dataset }}">
         <thead>
             <tr>
                 @foreach($headers as $header)

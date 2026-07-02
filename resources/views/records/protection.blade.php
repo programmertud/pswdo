@@ -37,7 +37,7 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
         <div class="table-search"><input type="text" placeholder="Search LGU…"></div>
     </div>
     <div style="overflow-x:auto;">
-        <table class="data-table">
+        <table class="data-table theme-protection">
             <thead>
                 <tr>
                     <th>No.</th>
