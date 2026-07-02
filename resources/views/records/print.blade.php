@@ -46,27 +46,27 @@
         @media print {
             @page {
                 size: landscape;
-                margin: 10mm 12mm;
+                margin: 5mm;
             }
             body {
                 padding: 0;
-                font-size: 10px;
+                font-size: 9px;
             }
             .no-print {
                 display: none !important;
             }
             .print-table {
-                font-size: 9px;
+                font-size: 8px;
             }
             .print-table th, .print-table td {
-                padding: 5px 7px;
+                padding: 3px 4px;
             }
             .category-title {
-                font-size: 18px;
-                margin-bottom: 10px;
+                font-size: 16px;
+                margin-bottom: 5px;
             }
             .print-header {
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }
         }
 
@@ -114,13 +114,13 @@
         .print-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 40px;
-            font-size: 10.5px;
+            margin-bottom: 15px;
+            font-size: 9px;
         }
 
         .print-table th, .print-table td {
             border: 1px solid #94a3b8;
-            padding: 7px 10px;
+            padding: 4px 6px;
             text-align: center;
             vertical-align: middle;
         }
@@ -130,7 +130,7 @@
             color: #000000 !important;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 9.5px;
+            font-size: 8px;
             letter-spacing: 0.5px;
         }
 
@@ -161,7 +161,7 @@
         .print-footer {
             display: flex;
             justify-content: space-between;
-            margin-top: 60px;
+            margin-top: 20px;
             page-break-inside: avoid;
         }
 
@@ -172,7 +172,7 @@
         .sig-label {
             font-size: 12px;
             font-weight: 600;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             color: #334155;
         }
 
