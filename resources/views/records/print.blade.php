@@ -42,10 +42,10 @@
             z-index: -1;
         }
 
-        /* Print Page Setup – fits A4 landscape (297×210mm) and Long Bond/Legal landscape (355×216mm) */
+        /* Print Page Setup – Landscape A4 (297×210mm) / Long Bond/Legal landscape (355×216mm) */
         @media print {
             @page {
-                size: auto;
+                size: landscape;
                 margin: 10mm 12mm;
             }
             body {
@@ -320,14 +320,6 @@
             </tr>
         </tbody>
     </table>
-
-    <!-- Color Legend -->
-    <div style="margin-bottom: 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 11px; color: #334155;">
-        <strong style="font-size: 11px; color: #0f2d5e;">Color Legend:</strong>
-        <span class="pill pill-green" style="font-size: 10px;">🟢 Good / Low Risk</span>
-        <span class="pill pill-amber" style="font-size: 10px;">🟡 Moderate / Attention Needed</span>
-        <span class="pill pill-red" style="font-size: 10px;">🔴 High / Needs Action</span>
-    </div>
 
     <div class="print-footer">
         <div class="signature-block">
