@@ -42,39 +42,58 @@
             z-index: -1;
         }
 
-        /* Print Page Setup – Landscape A4 (297×210mm) / Long Bond/Legal landscape (355×216mm) */
+        /* Print Page Setup */
         @media print {
             @page {
                 size: landscape;
-                margin: 5mm;
+                margin: 0.2in !important;
             }
-            body {
-                padding: 0;
-                font-size: 9px;
+            html, body {
+                height: 100vh;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                background: #ffffff;
             }
             .no-print {
                 display: none !important;
             }
-            .print-table {
-                font-size: 8px;
-            }
-            .print-table th, .print-table td {
-                padding: 3px 4px;
-            }
-            .category-title {
-                font-size: 14px;
-                margin-bottom: 3px;
-            }
             .print-header {
-                margin-bottom: 5px;
+                margin-bottom: 2mm !important;
+                gap: 10px !important;
             }
             .header-logo {
-                height: 45px;
-                width: 45px;
+                height: 40px !important;
+                width: 40px !important;
             }
             .header-banner {
-                padding: 6px 10px;
-                font-size: 10px;
+                padding: 4px 8px !important;
+                font-size: 9px !important;
+            }
+            .category-title {
+                font-size: 13px !important;
+                margin-bottom: 2mm !important;
+            }
+            .print-table {
+                font-size: 7.5px !important;
+                margin-bottom: 2mm !important;
+            }
+            .print-table th, .print-table td {
+                padding: 2px 3px !important;
+                border: 0.5px solid #94a3b8 !important;
+            }
+            .print-footer {
+                margin-top: 2mm !important;
+            }
+            .sig-label {
+                margin-bottom: 15px !important;
+                font-size: 9px !important;
+            }
+            .sig-name {
+                font-size: 10px !important;
+            }
+            .sig-title {
+                font-size: 8px !important;
             }
         }
 
@@ -84,6 +103,7 @@
             align-items: center;
             gap: 20px;
             margin-bottom: 25px;
+            page-break-after: avoid;
         }
 
         .header-logo {
@@ -116,6 +136,7 @@
             letter-spacing: 0.5px;
             margin-bottom: 15px;
             text-transform: uppercase;
+            page-break-after: avoid;
         }
 
         /* Table Styling */
@@ -159,6 +180,10 @@
         .print-table td:nth-child(2) {
             text-align: left; /* LGU column */
             font-weight: 500;
+        }
+
+        .print-table tr {
+            page-break-inside: avoid;
         }
 
         .print-table tr:nth-child(even) td {
