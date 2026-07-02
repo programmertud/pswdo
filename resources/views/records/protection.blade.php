@@ -26,7 +26,7 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
         <span class="stat-sub">M: {{ number_format($totals['male']) }} · F: {{ number_format($totals['female']) }}</span>
     </div>
     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-        <a href="{{ route('exports.download', ['dataset' => 'protection', 'format' => 'pdf']) }}" target="_blank" class="btn btn-outline btn-sm">PDF</a>
+        <a href="{{ route('exports.download', ['dataset' => 'protection', 'format' => 'pdf']) }}" target="_blank" class="btn btn-outline btn-sm">Print</a>
         <a href="{{ route('exports.download', ['dataset' => 'protection', 'format' => 'excel']) }}" class="btn btn-outline btn-sm">Excel</a>
     </div>
 </div>
@@ -55,11 +55,32 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
                 <tr>
                     <td>{{ $i + 1 }}</td>
                     <td class="lgu-name">{{ $r->lgu_name }}</td>
-                    <td class="num">{!! $r->cnsp_cases !== null ? '<span class="pill pill-red">'.number_format($r->cnsp_cases).'</span>' : '<span class="null-dash">—</span>' !!}</td>
-                    <td class="num">{!! $r->car_cicl_cases !== null ? number_format($r->car_cicl_cases) : '<span class="null-dash">—</span>' !!}</td>
+                    <td class="num">
+                        @if($r->cnsp_cases !== null)
+                            @php $c = $r->cnsp_cases; $cls = $c >= 3 ? 'pill-red' : ($c >= 1 ? 'pill-amber' : 'pill-green'); @endphp
+                            <span class="pill {{ $cls }}">{{ number_format($c) }}</span>
+                        @else
+                            <span class="null-dash">—</span>
+                        @endif
+                    </td>
+                    <td class="num">
+                        @if($r->car_cicl_cases !== null)
+                            @php $c2 = $r->car_cicl_cases; $cls2 = $c2 >= 10 ? 'pill-red' : ($c2 >= 3 ? 'pill-amber' : 'pill-green'); @endphp
+                            <span class="pill {{ $cls2 }}">{{ number_format($c2) }}</span>
+                        @else
+                            <span class="null-dash">—</span>
+                        @endif
+                    </td>
                     <td class="num">{!! $r->car_cicl_male !== null ? number_format($r->car_cicl_male) : '<span class="null-dash">—</span>' !!}</td>
                     <td class="num">{!! $r->car_cicl_female !== null ? number_format($r->car_cicl_female) : '<span class="null-dash">—</span>' !!}</td>
-                    <td class="num">{!! $r->car_cicl_total !== null ? '<strong>'.number_format($r->car_cicl_total).'</strong>' : '<span class="null-dash">—</span>' !!}</td>
+                    <td class="num">
+                        @if($r->car_cicl_total !== null)
+                            @php $ct = $r->car_cicl_total; $clst = $ct >= 15 ? 'pill-red' : ($ct >= 5 ? 'pill-amber' : 'pill-green'); @endphp
+                            <span class="pill {{ $clst }}"><strong>{{ number_format($ct) }}</strong></span>
+                        @else
+                            <span class="null-dash">—</span>
+                        @endif
+                    </td>
                     <td class="action-cell" style="text-align:center;">
                         <button class="btn-edit" onclick="openEditModal({{ $r->id }}, '{{ addslashes($r->lgu_name) }}', {{ $r->cnsp_cases ?? 'null' }}, {{ $r->car_cicl_cases ?? 'null' }}, {{ $r->car_cicl_male ?? 'null' }}, {{ $r->car_cicl_female ?? 'null' }}, {{ $r->car_cicl_total ?? 'null' }})">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>

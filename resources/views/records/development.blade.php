@@ -24,7 +24,7 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
         <span class="stat-value">{{ number_format($totals['total']) }}</span>
     </div>
     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-        <a href="{{ route('exports.download', ['dataset' => 'development', 'format' => 'pdf']) }}" target="_blank" class="btn btn-outline btn-sm">PDF</a>
+        <a href="{{ route('exports.download', ['dataset' => 'development', 'format' => 'pdf']) }}" target="_blank" class="btn btn-outline btn-sm">Print</a>
         <a href="{{ route('exports.download', ['dataset' => 'development', 'format' => 'excel']) }}" class="btn btn-outline btn-sm">Excel</a>
     </div>
 </div>
@@ -54,7 +54,17 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
                     <td class="lgu-name">{{ $r->lgu_name }}</td>
                     <td class="num">{!! $r->children_in_school_male !== null ? number_format($r->children_in_school_male) : '<span class="null-dash">—</span>' !!}</td>
                     <td class="num">{!! $r->children_in_school_female !== null ? number_format($r->children_in_school_female) : '<span class="null-dash">—</span>' !!}</td>
-                    <td class="num">{!! $r->children_in_school_total !== null ? number_format($r->children_in_school_total) : '<span class="null-dash">—</span>' !!}</td>
+                    <td class="num">
+                        @if($r->children_in_school_total !== null)
+                            @php
+                                $tot = $r->children_in_school_total;
+                                $cls = $tot >= 200 ? 'pill-green' : ($tot >= 80 ? 'pill-amber' : 'pill-red');
+                            @endphp
+                            <span class="pill {{ $cls }}">{{ number_format($tot) }}</span>
+                        @else
+                            <span class="null-dash">—</span>
+                        @endif
+                    </td>
                     <td>
                         @if($r->remarks)
                             <span class="pill pill-amber">{{ $r->remarks }}</span>

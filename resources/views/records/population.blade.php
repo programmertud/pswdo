@@ -24,7 +24,7 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
         <span class="stat-value">{{ number_format($totals['female']) }}</span>
     </div>
     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-        <a href="{{ route('exports.download', ['dataset' => 'population', 'format' => 'pdf']) }}" target="_blank" class="btn btn-outline btn-sm">PDF</a>
+        <a href="{{ route('exports.download', ['dataset' => 'population', 'format' => 'pdf']) }}" target="_blank" class="btn btn-outline btn-sm">Print</a>
         <a href="{{ route('exports.download', ['dataset' => 'population', 'format' => 'excel']) }}" class="btn btn-outline btn-sm">Excel</a>
         <button class="btn btn-gold btn-sm" onclick="openAddModal()">+ Add Record</button>
     </div>

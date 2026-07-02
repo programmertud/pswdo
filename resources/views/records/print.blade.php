@@ -42,17 +42,31 @@
             z-index: -1;
         }
 
-        /* Print Page Setup */
+        /* Print Page Setup – fits A4 landscape (297×210mm) and Long Bond/Legal landscape (355×216mm) */
         @media print {
             @page {
-                size: landscape;
-                margin: 12mm 15mm;
+                size: auto;
+                margin: 10mm 12mm;
             }
             body {
                 padding: 0;
+                font-size: 10px;
             }
             .no-print {
                 display: none !important;
+            }
+            .print-table {
+                font-size: 9px;
+            }
+            .print-table th, .print-table td {
+                padding: 5px 7px;
+            }
+            .category-title {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            .print-header {
+                margin-bottom: 15px;
             }
         }
 
@@ -211,9 +225,18 @@
             font-size: 13px;
         }
 
-        .btn-print:hover {
-            background-color: #fdb940;
+        .pill {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 9px;
+            font-weight: 600;
+            border-radius: 4px;
+            text-align: center;
         }
+        .pill-green  { background: #dcfce7 !important; color: #15803d !important; }
+        .pill-amber  { background: #fef3c7 !important; color: #b45309 !important; }
+        .pill-red    { background: #fee2e2 !important; color: #dc2626 !important; }
+        .pill-blue   { background: #dbeafe !important; color: #1d4ed8 !important; }
     </style>
 </head>
 <body>
@@ -249,17 +272,62 @@
             @foreach($rows as $row)
                 <tr>
                     @foreach($headers as $header)
-                        <td>{{ $row[$header] }}</td>
+                        @php
+                            $val = $row[$header];
+                            $isPill = false;
+                            $pillClass = '';
+                            
+                            if (($header === 'Immunization %' || $header === 'Immunization Rate (%)' || $header === 'Immunization % (12 mos.)') && $val !== '-') {
+                                $numVal = (float) str_replace('%', '', $val);
+                                $isPill = true;
+                                $pillClass = $numVal >= 85 ? 'pill-green' : ($numVal >= 70 ? 'pill-amber' : 'pill-red');
+                            } elseif ($dataset === 'development' && ($header === 'Total' || $header === 'Total in School') && $val !== '-') {
+                                $numVal = (int) str_replace(',', '', $val);
+                                $isPill = true;
+                                $pillClass = $numVal >= 200 ? 'pill-green' : ($numVal >= 80 ? 'pill-amber' : 'pill-red');
+                            } elseif ($dataset === 'protection' && $header === 'CNSP Cases' && $val !== '-') {
+                                $numVal = (int) str_replace(',', '', $val);
+                                $isPill = true;
+                                $pillClass = $numVal >= 3 ? 'pill-red' : ($numVal >= 1 ? 'pill-amber' : 'pill-green');
+                            } elseif ($dataset === 'protection' && ($header === 'Total' || $header === 'Overall Total' || $header === 'CAR/CICL' || $header === 'CAR_CICL Total' || $header === 'CAR/CICL Total') && $val !== '-') {
+                                $numVal = (int) str_replace(',', '', $val);
+                                $isPill = true;
+                                $pillClass = $numVal >= 15 ? 'pill-red' : ($numVal >= 5 ? 'pill-amber' : 'pill-green');
+                            } elseif ($dataset === 'disability' && $header === 'Total' && $val !== '-') {
+                                $numVal = (int) str_replace(',', '', $val);
+                                $isPill = true;
+                                $pillClass = $numVal >= 70 ? 'pill-red' : ($numVal >= 30 ? 'pill-amber' : 'pill-green');
+                            } elseif ($dataset === 'ip' && $header === 'Total' && $val !== '-') {
+                                $numVal = (int) str_replace(',', '', $val);
+                                $isPill = true;
+                                $pillClass = $numVal >= 200 ? 'pill-red' : ($numVal >= 50 ? 'pill-amber' : 'pill-green');
+                            }
+                        @endphp
+                        <td>
+                            @if($isPill)
+                                <span class="pill {{ $pillClass }}">{{ $val }}</span>
+                            @else
+                                {!! $val !!}
+                            @endif
+                        </td>
                     @endforeach
                 </tr>
             @endforeach
             <tr class="total-row">
                 @foreach($headers as $header)
-                    <td>{{ $totals[$header] }}</td>
+                    <td>{!! $totals[$header] !!}</td>
                 @endforeach
             </tr>
         </tbody>
     </table>
+
+    <!-- Color Legend -->
+    <div style="margin-bottom: 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 11px; color: #334155;">
+        <strong style="font-size: 11px; color: #0f2d5e;">Color Legend:</strong>
+        <span class="pill pill-green" style="font-size: 10px;">🟢 Good / Low Risk</span>
+        <span class="pill pill-amber" style="font-size: 10px;">🟡 Moderate / Attention Needed</span>
+        <span class="pill pill-red" style="font-size: 10px;">🔴 High / Needs Action</span>
+    </div>
 
     <div class="print-footer">
         <div class="signature-block">
