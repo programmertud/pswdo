@@ -202,19 +202,7 @@
                     <label>Pregnant Adolescents (10-19 yrs)</label>
                     <input type="number" name="pregnant_adolescents_10_19" class="form-control" min="0" placeholder="e.g. 24">
                 </div>
-                <div class="form-group">
-                    <label>Male</label>
-                    <input type="number" name="male" class="form-control" min="0" placeholder="e.g. 150">
-                </div>
-                <div class="form-group">
-                    <label>Female</label>
-                    <input type="number" name="female" class="form-control" min="0" placeholder="e.g. 150">
-                </div>
-                <div class="form-group">
-                    <label>Total</label>
-                    <input type="number" name="total" class="form-control" min="0" placeholder="e.g. 300">
-                    <span class="hint">Leave blank to auto-sum Male + Female</span>
-                </div>
+                
             </div>
             <div class="form-footer" style="margin-top:24px;">
                 <button type="submit" class="btn btn-primary">Save Survival Record</button>
