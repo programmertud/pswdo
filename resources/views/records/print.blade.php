@@ -71,29 +71,33 @@
                 font-size: 9px !important;
             }
             .category-title {
-                font-size: 13px !important;
-                margin-bottom: 2mm !important;
+                font-size: 16px !important;
+                margin-bottom: 3mm !important;
             }
             .print-table {
-                font-size: 7.5px !important;
-                margin-bottom: 2mm !important;
+                font-size: 9px !important;
+                margin-bottom: 3mm !important;
             }
-            .print-table th, .print-table td {
-                padding: 2px 3px !important;
+            .print-table th {
+                font-size: 9px !important;
+                padding: 4px 5px !important;
+            }
+            .print-table td {
+                padding: 4px 5px !important;
                 border: 0.5px solid #94a3b8 !important;
             }
             .print-footer {
-                margin-top: 2mm !important;
+                margin-top: 4mm !important;
             }
             .sig-label {
-                margin-bottom: 15px !important;
-                font-size: 9px !important;
+                margin-bottom: 25px !important;
+                font-size: 11px !important;
             }
             .sig-name {
-                font-size: 10px !important;
+                font-size: 12px !important;
             }
             .sig-title {
-                font-size: 8px !important;
+                font-size: 10px !important;
             }
         }
 
