@@ -205,7 +205,7 @@ class DatabaseSeeder extends Seeder
                 'created_at' => $now, 'updated_at' => $now
             ]);
             DB::table('survival_records')->insert([
-                'year' => 2026, 'lgu_name' => $lgu, 'immunization_rate' => 0, 'total_pop_12_months' => 0,
+                'year' => 2026, 'lgu_name' => $lgu, 'male' => 0, 'female' => 0, 'total' => 0, 'immunization_rate' => 0, 'total_pop_12_months' => 0,
                 'actual_0_59_months_weighed' => 0, 'total_pop_0_59_months' => 0,
                 'pregnant_adolescents_10_19' => 0,
                 'created_at' => $now, 'updated_at' => $now

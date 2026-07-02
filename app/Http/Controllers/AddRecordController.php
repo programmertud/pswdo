@@ -67,17 +67,7 @@ class AddRecordController extends Controller
         DB::table($table)->where('id', $id)->delete();
     }
 
-    private function handleChildInfo(Request $request, string $category)
-    {
-        if ($request->filled('child_name') && $request->filled('child_age')) {
-            \App\ChildInfo::create([
-                'name'     => $request->child_name,
-                'age'      => $request->child_age,
-                'lgu_name' => $request->lgu_name,
-                'category' => $category,
-            ]);
-        }
-    }
+    // Removed handleChildInfo as per user request
 
 
     // ── Add form (sidebar link) ────────────────────────────────────────
@@ -126,17 +116,18 @@ class AddRecordController extends Controller
     {
         $data = $request->validate([
             'lgu_name'                   => 'required|string|max:100',
+            'male'                       => 'nullable|integer|min:0',
+            'female'                     => 'nullable|integer|min:0',
+            'total'                      => 'nullable|integer|min:0',
             'immunization_rate'          => 'nullable|numeric|min:0|max:100',
             'total_pop_12_months'        => 'nullable|integer|min:0',
             'actual_0_59_months_weighed' => 'nullable|integer|min:0',
             'total_pop_0_59_months'      => 'nullable|integer|min:0',
             'pregnant_adolescents_10_19' => 'nullable|integer|min:0',
-            'child_name'                 => 'required|string|max:255',
-            'child_age'                  => 'required|integer|min:0',
         ]);
-        $this->handleChildInfo($request, 'Survival');
-        unset($data['child_name'], $data['child_age']);
+        
         $this->accumulateRecord('survival_records', $data, [
+            'male','female','total',
             'immunization_rate','total_pop_12_months','actual_0_59_months_weighed',
             'total_pop_0_59_months','pregnant_adolescents_10_19'
         ]);
@@ -169,22 +160,14 @@ class AddRecordController extends Controller
     public function storeDevelopment(Request $request)
     {
         $data = $request->validate([
-            'lgu_name' => 'required|string|max:100',
-            'gender'   => 'required|in:male,female',
-            'remarks'  => 'nullable|string|max:255',
-            'child_name' => 'required|string|max:255',
-            'child_age'  => 'required|integer|min:0',
+            'lgu_name'                  => 'required|string|max:100',
+            'children_in_school_male'   => 'nullable|integer|min:0',
+            'children_in_school_female' => 'nullable|integer|min:0',
+            'children_in_school_total'  => 'nullable|integer|min:0',
+            'remarks'                   => 'nullable|string|max:255',
         ]);
-        $this->handleChildInfo($request, 'Development');
-        $isMale   = $data['gender'] === 'male';
-        $tableData = [
-            'lgu_name'                  => $data['lgu_name'],
-            'children_in_school_male'   => $isMale ? 1 : 0,
-            'children_in_school_female' => $isMale ? 0 : 1,
-            'children_in_school_total'  => 1,
-            'remarks'                   => $data['remarks'] ?? null,
-        ];
-        $this->accumulateRecord('development_records', $tableData, [
+        
+        $this->accumulateRecord('development_records', $data, [
             'children_in_school_male','children_in_school_female','children_in_school_total'
         ]);
         return redirect()->route('records.development')->with('success', "Development record for {$data['lgu_name']} saved.");
@@ -215,24 +198,15 @@ class AddRecordController extends Controller
     public function storeProtection(Request $request)
     {
         $data = $request->validate([
-            'lgu_name'       => 'required|string|max:100',
-            'cnsp_cases'     => 'nullable|integer|min:0',
-            'car_cicl_cases' => 'nullable|integer|min:0',
-            'gender'         => 'required|in:male,female',
-            'child_name'     => 'required|string|max:255',
-            'child_age'      => 'required|integer|min:0',
+            'lgu_name'        => 'required|string|max:100',
+            'cnsp_cases'      => 'nullable|integer|min:0',
+            'car_cicl_cases'  => 'nullable|integer|min:0',
+            'car_cicl_male'   => 'nullable|integer|min:0',
+            'car_cicl_female' => 'nullable|integer|min:0',
+            'car_cicl_total'  => 'nullable|integer|min:0',
         ]);
-        $this->handleChildInfo($request, 'Protection');
-        $isMale   = $data['gender'] === 'male';
-        $tableData = [
-            'lgu_name'        => $data['lgu_name'],
-            'cnsp_cases'      => $data['cnsp_cases'] ?? null,
-            'car_cicl_cases'  => $data['car_cicl_cases'] ?? null,
-            'car_cicl_male'   => $isMale ? 1 : 0,
-            'car_cicl_female' => $isMale ? 0 : 1,
-            'car_cicl_total'  => 1,
-        ];
-        $this->accumulateRecord('protection_records', $tableData, [
+        
+        $this->accumulateRecord('protection_records', $data, [
             'cnsp_cases','car_cicl_cases','car_cicl_male','car_cicl_female','car_cicl_total'
         ]);
         return redirect()->route('records.protection')->with('success', "Protection record for {$data['lgu_name']} saved.");
@@ -264,20 +238,13 @@ class AddRecordController extends Controller
     public function storeDisability(Request $request)
     {
         $data = $request->validate([
-            'lgu_name'   => 'required|string|max:100',
-            'gender'     => 'required|in:male,female',
-            'child_name' => 'required|string|max:255',
-            'child_age'  => 'required|integer|min:0',
+            'lgu_name' => 'required|string|max:100',
+            'male'     => 'nullable|integer|min:0',
+            'female'   => 'nullable|integer|min:0',
+            'total'    => 'nullable|integer|min:0',
         ]);
-        $this->handleChildInfo($request, 'Disability');
-        $isMale   = $data['gender'] === 'male';
-        $tableData = [
-            'lgu_name' => $data['lgu_name'],
-            'male'     => $isMale ? 1 : 0,
-            'female'   => $isMale ? 0 : 1,
-            'total'    => 1,
-        ];
-        $this->accumulateRecord('children_with_disability', $tableData, ['male','female','total']);
+        
+        $this->accumulateRecord('children_with_disability', $data, ['male','female','total']);
         return redirect()->route('records.disability')->with('success', "Disability record for {$data['lgu_name']} saved.");
     }
 
@@ -305,20 +272,13 @@ class AddRecordController extends Controller
     public function storeIP(Request $request)
     {
         $data = $request->validate([
-            'lgu_name'   => 'required|string|max:100',
-            'gender'     => 'required|in:male,female',
-            'child_name' => 'required|string|max:255',
-            'child_age'  => 'required|integer|min:0',
+            'lgu_name' => 'required|string|max:100',
+            'male'     => 'nullable|integer|min:0',
+            'female'   => 'nullable|integer|min:0',
+            'total'    => 'nullable|integer|min:0',
         ]);
-        $this->handleChildInfo($request, 'IP Children');
-        $isMale   = $data['gender'] === 'male';
-        $tableData = [
-            'lgu_name' => $data['lgu_name'],
-            'male'     => $isMale ? 1 : 0,
-            'female'   => $isMale ? 0 : 1,
-            'total'    => 1,
-        ];
-        $this->accumulateRecord('ip_children', $tableData, ['male','female','total']);
+        
+        $this->accumulateRecord('ip_children', $data, ['male','female','total']);
         return redirect()->route('records.ip')->with('success', "IP Children record for {$data['lgu_name']} saved.");
     }
 

@@ -13,6 +13,9 @@ return new class extends Migration
             $table->id();
             $table->string('lgu_name');
             $table->unsignedSmallInteger('year')->default(2025);
+            $table->integer('male')->nullable();
+            $table->integer('female')->nullable();
+            $table->integer('total')->nullable();
             $table->decimal('immunization_rate', 5, 2)->nullable();
             $table->integer('total_pop_12_months')->nullable();
             $table->integer('actual_0_59_months_weighed')->nullable();

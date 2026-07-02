@@ -202,13 +202,18 @@
                     <label>Pregnant Adolescents (10-19 yrs)</label>
                     <input type="number" name="pregnant_adolescents_10_19" class="form-control" min="0" placeholder="e.g. 24">
                 </div>
-                <div class="form-group child-info-section" style="grid-column:1/-1;">
-                    <label style="font-weight: bold;">Individual Child Info (Required)</label>
-                    <p style="font-size:12px; color:#854d0e; margin-bottom: 12px;">This child will be saved to the Child Records database. Name and age are required.</p>
-                    <div style="display: flex; gap: 16px;">
-                        <input type="text" name="child_name" class="form-control" placeholder="Child's Name" required>
-                        <input type="number" name="child_age" class="form-control" placeholder="Age" min="0" required style="max-width: 120px;">
-                    </div>
+                <div class="form-group">
+                    <label>Male</label>
+                    <input type="number" name="male" class="form-control" min="0" placeholder="e.g. 150">
+                </div>
+                <div class="form-group">
+                    <label>Female</label>
+                    <input type="number" name="female" class="form-control" min="0" placeholder="e.g. 150">
+                </div>
+                <div class="form-group">
+                    <label>Total</label>
+                    <input type="number" name="total" class="form-control" min="0" placeholder="e.g. 300">
+                    <span class="hint">Leave blank to auto-sum Male + Female</span>
                 </div>
             </div>
             <div class="form-footer" style="margin-top:24px;">
@@ -236,24 +241,17 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Gender *</label>
-                    <select name="gender" class="form-control" required>
-                        <option value="">— Select Gender —</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <label>Male in School</label>
+                    <input type="number" name="children_in_school_male" class="form-control" min="0" placeholder="e.g. 128">
                 </div>
                 <div class="form-group">
-                    <label>Remarks</label>
-                    <input type="text" name="remarks" class="form-control" placeholder="e.g. Only ECCD enrollees">
+                    <label>Female in School</label>
+                    <input type="number" name="children_in_school_female" class="form-control" min="0" placeholder="e.g. 116">
                 </div>
-                <div class="form-group child-info-section" style="grid-column:1/-1;">
-                    <label style="font-weight: bold;">Individual Child Info (Required)</label>
-                    <p style="font-size:12px; color:#854d0e; margin-bottom: 12px;">This child will be saved to the Child Records database. Name and age are required.</p>
-                    <div style="display: flex; gap: 16px;">
-                        <input type="text" name="child_name" class="form-control" placeholder="Child's Name" required>
-                        <input type="number" name="child_age" class="form-control" placeholder="Age" min="0" required style="max-width: 120px;">
-                    </div>
+                <div class="form-group">
+                    <label>Total in School</label>
+                    <input type="number" name="children_in_school_total" class="form-control" min="0" placeholder="e.g. 244">
+                    <span class="hint">Leave blank to auto-sum</span>
                 </div>
             </div>
             <div class="form-footer" style="margin-top:24px;">
@@ -286,24 +284,17 @@
                     <span class="hint">Children in Need of Special Protection</span>
                 </div>
                 <div class="form-group">
-                    <label>Total CAR and CICL Cases</label>
-                    <input type="number" name="car_cicl_cases" class="form-control" min="0" placeholder="e.g. 13">
+                    <label>CAR/CICL Male</label>
+                    <input type="number" name="car_cicl_male" class="form-control" min="0" placeholder="e.g. 12">
                 </div>
                 <div class="form-group">
-                    <label>Gender *</label>
-                    <select name="gender" class="form-control" required>
-                        <option value="">— Select Gender —</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <label>CAR/CICL Female</label>
+                    <input type="number" name="car_cicl_female" class="form-control" min="0" placeholder="e.g. 3">
                 </div>
-                <div class="form-group child-info-section" style="grid-column:1/-1;">
-                    <label style="font-weight: bold;">Individual Child Info (Required)</label>
-                    <p style="font-size:12px; color:#854d0e; margin-bottom: 12px;">This child will be saved to the Child Records database. Name and age are required.</p>
-                    <div style="display: flex; gap: 16px;">
-                        <input type="text" name="child_name" class="form-control" placeholder="Child's Name" required>
-                        <input type="number" name="child_age" class="form-control" placeholder="Age" min="0" required style="max-width: 120px;">
-                    </div>
+                <div class="form-group">
+                    <label>CAR/CICL Total</label>
+                    <input type="number" name="car_cicl_total" class="form-control" min="0" placeholder="e.g. 15">
+                    <span class="hint">Leave blank to auto-sum</span>
                 </div>
             </div>
             <div class="form-footer" style="margin-top:24px;">
@@ -331,20 +322,17 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Gender *</label>
-                    <select name="gender" class="form-control" required>
-                        <option value="">— Select Gender —</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <label>Male</label>
+                    <input type="number" name="male" class="form-control" min="0" placeholder="e.g. 40">
                 </div>
-                <div class="form-group child-info-section" style="grid-column:1/-1;">
-                    <label style="font-weight: bold;">Individual Child Info (Required)</label>
-                    <p style="font-size:12px; color:#854d0e; margin-bottom: 12px;">This child will be saved to the Child Records database. Name and age are required.</p>
-                    <div style="display: flex; gap: 16px;">
-                        <input type="text" name="child_name" class="form-control" placeholder="Child's Name" required>
-                        <input type="number" name="child_age" class="form-control" placeholder="Age" min="0" required style="max-width: 120px;">
-                    </div>
+                <div class="form-group">
+                    <label>Female</label>
+                    <input type="number" name="female" class="form-control" min="0" placeholder="e.g. 43">
+                </div>
+                <div class="form-group">
+                    <label>Total</label>
+                    <input type="number" name="total" class="form-control" min="0" placeholder="e.g. 83">
+                    <span class="hint">Leave blank to auto-sum Male + Female</span>
                 </div>
             </div>
             <div class="form-footer" style="margin-top:24px;">
@@ -372,20 +360,17 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Gender *</label>
-                    <select name="gender" class="form-control" required>
-                        <option value="">— Select Gender —</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <label>Male</label>
+                    <input type="number" name="male" class="form-control" min="0" placeholder="e.g. 122">
                 </div>
-                <div class="form-group child-info-section" style="grid-column:1/-1;">
-                    <label style="font-weight: bold;">Individual Child Info (Required)</label>
-                    <p style="font-size:12px; color:#854d0e; margin-bottom: 12px;">This child will be saved to the Child Records database. Name and age are required.</p>
-                    <div style="display: flex; gap: 16px;">
-                        <input type="text" name="child_name" class="form-control" placeholder="Child's Name" required>
-                        <input type="number" name="child_age" class="form-control" placeholder="Age" min="0" required style="max-width: 120px;">
-                    </div>
+                <div class="form-group">
+                    <label>Female</label>
+                    <input type="number" name="female" class="form-control" min="0" placeholder="e.g. 145">
+                </div>
+                <div class="form-group">
+                    <label>Total</label>
+                    <input type="number" name="total" class="form-control" min="0" placeholder="e.g. 267">
+                    <span class="hint">Leave blank to auto-sum Male + Female</span>
                 </div>
             </div>
             <div class="form-footer" style="margin-top:24px;">
@@ -435,6 +420,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         setupAutoSum('#panel-population input[name="male"]', '#panel-population input[name="female"]', '#panel-population input[name="total"]');
+        setupAutoSum('#panel-survival input[name="male"]', '#panel-survival input[name="female"]', '#panel-survival input[name="total"]');
         setupAutoSum('#panel-development input[name="children_in_school_male"]', '#panel-development input[name="children_in_school_female"]', '#panel-development input[name="children_in_school_total"]');
         setupAutoSum('#panel-protection input[name="car_cicl_male"]', '#panel-protection input[name="car_cicl_female"]', '#panel-protection input[name="car_cicl_total"]');
         setupAutoSum('#panel-disability input[name="male"]', '#panel-disability input[name="female"]', '#panel-disability input[name="total"]');

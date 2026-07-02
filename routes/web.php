@@ -70,11 +70,4 @@ Route::middleware('auth.session')->group(function () {
         Route::delete('/ip/{id}',             [AddRecordController::class, 'destroyIP'])->name('ip.destroy');
     });
 
-    // Child Records
-    Route::prefix('children')->name('children.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\ChildInfoController::class, 'index'])->name('index');
-        Route::post('/', [\App\Http\Controllers\ChildInfoController::class, 'store'])->name('store');
-        Route::put('/{id}', [\App\Http\Controllers\ChildInfoController::class, 'update'])->name('update');
-        Route::delete('/{id}', [\App\Http\Controllers\ChildInfoController::class, 'destroy'])->name('destroy');
-    });
 });
