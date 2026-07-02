@@ -9,7 +9,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // ── TOTAL POPULATION OF CHILDREN ──────────────────────────────
+        // ── TOTAL POPULATION OF CHILDREN (2025) ───────────────────────
         $populations = [
             ['lgu_name' => 'Alegria',       'male' => 3629,  'female' => 3320,  'total' => 6949],
             ['lgu_name' => 'Bacuag',        'male' => 2318,  'female' => 2128,  'total' => 4446],
@@ -35,11 +35,11 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($populations as $row) {
             DB::table('lgu_populations')->insert(array_merge($row, [
-                'created_at' => now(), 'updated_at' => now()
+                'year' => 2025, 'created_at' => now(), 'updated_at' => now()
             ]));
         }
 
-        // ── SURVIVAL ──────────────────────────────────────────────────
+        // ── SURVIVAL (2025) ───────────────────────────────────────────
         $survival = [
             ['lgu_name' => 'Alegria',       'immunization_rate' => 97.85, 'total_pop_12_months' => 300,  'actual_0_59_months_weighed' => 1482,  'total_pop_0_59_months' => 1628,  'pregnant_adolescents_10_19' => 24],
             ['lgu_name' => 'Bacuag',        'immunization_rate' => 78.65, 'total_pop_12_months' => 249,  'actual_0_59_months_weighed' => 1098,  'total_pop_0_59_months' => 1250,  'pregnant_adolescents_10_19' => 15],
@@ -65,11 +65,11 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($survival as $row) {
             DB::table('survival_records')->insert(array_merge($row, [
-                'created_at' => now(), 'updated_at' => now()
+                'year' => 2025, 'created_at' => now(), 'updated_at' => now()
             ]));
         }
 
-        // ── DEVELOPMENT ───────────────────────────────────────────────
+        // ── DEVELOPMENT (2025) ────────────────────────────────────────
         $development = [
             ['lgu_name' => 'Alegria',       'children_in_school_male' => 128,  'children_in_school_female' => 116,  'children_in_school_total' => 244,  'remarks' => null],
             ['lgu_name' => 'Bacuag',        'children_in_school_male' => 679,  'children_in_school_female' => 723,  'children_in_school_total' => 1402, 'remarks' => null],
@@ -95,11 +95,11 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($development as $row) {
             DB::table('development_records')->insert(array_merge($row, [
-                'created_at' => now(), 'updated_at' => now()
+                'year' => 2025, 'created_at' => now(), 'updated_at' => now()
             ]));
         }
 
-        // ── PROTECTION ────────────────────────────────────────────────
+        // ── PROTECTION (2025) ─────────────────────────────────────────
         $protection = [
             ['lgu_name' => 'Alegria',       'cnsp_cases' => 2,    'car_cicl_cases' => 13,   'car_cicl_male' => 12,   'car_cicl_female' => 3,    'car_cicl_total' => 15],
             ['lgu_name' => 'Bacuag',        'cnsp_cases' => 4,    'car_cicl_cases' => 2,    'car_cicl_male' => 4,    'car_cicl_female' => 2,    'car_cicl_total' => 6],
@@ -125,11 +125,11 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($protection as $row) {
             DB::table('protection_records')->insert(array_merge($row, [
-                'created_at' => now(), 'updated_at' => now()
+                'year' => 2025, 'created_at' => now(), 'updated_at' => now()
             ]));
         }
 
-        // ── CHILDREN WITH DISABILITY ──────────────────────────────────
+        // ── CHILDREN WITH DISABILITY (2025) ───────────────────────────
         $disability = [
             ['lgu_name' => 'Alegria',       'male' => 40,   'female' => 43,   'total' => 83],
             ['lgu_name' => 'Bacuag',        'male' => 30,   'female' => 16,   'total' => 46],
@@ -155,11 +155,11 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($disability as $row) {
             DB::table('children_with_disability')->insert(array_merge($row, [
-                'created_at' => now(), 'updated_at' => now()
+                'year' => 2025, 'created_at' => now(), 'updated_at' => now()
             ]));
         }
 
-        // ── IP CHILDREN ───────────────────────────────────────────────
+        // ── IP CHILDREN (2025) ────────────────────────────────────────
         $ip = [
             ['lgu_name' => 'Alegria',       'male' => 122,  'female' => 145,  'total' => 267],
             ['lgu_name' => 'Bacuag',        'male' => 27,   'female' => 37,   'total' => 64],
@@ -189,52 +189,41 @@ class DatabaseSeeder extends Seeder
             ]));
         }
 
-        // ── INITIALIZE 2026 WITH ZEROS ───────────────────────────────
+        // ── INITIALIZE 2026 WITH ZEROS ────────────────────────────────
         $lgus = [
             'Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna',
             'Gigaquit','Mainit','Malimono','Pilar','Placer','San Benito','San Franciso',
             'San Isidro','Santa Monica','Sison','Socorro','Surigao City','Tagana-an','Tubod'
         ];
-        
-        sort($lgus); // Ensure alphabetical order
+        sort($lgus);
 
         foreach ($lgus as $lgu) {
             $now = now();
-            // Population
+
             DB::table('lgu_populations')->insert([
                 'year' => 2026, 'lgu_name' => $lgu, 'male' => 0, 'female' => 0, 'total' => 0,
                 'created_at' => $now, 'updated_at' => $now
             ]);
-
-            // Survival
             DB::table('survival_records')->insert([
                 'year' => 2026, 'lgu_name' => $lgu, 'immunization_rate' => 0, 'total_pop_12_months' => 0,
                 'actual_0_59_months_weighed' => 0, 'total_pop_0_59_months' => 0,
                 'pregnant_adolescents_10_19' => 0,
                 'created_at' => $now, 'updated_at' => $now
             ]);
-
-            // Development
             DB::table('development_records')->insert([
                 'year' => 2026, 'lgu_name' => $lgu, 'children_in_school_male' => 0,
                 'children_in_school_female' => 0, 'children_in_school_total' => 0, 'remarks' => null,
                 'created_at' => $now, 'updated_at' => $now
             ]);
-
-            // Protection
             DB::table('protection_records')->insert([
                 'year' => 2026, 'lgu_name' => $lgu, 'cnsp_cases' => 0, 'car_cicl_cases' => 0,
                 'car_cicl_male' => 0, 'car_cicl_female' => 0, 'car_cicl_total' => 0,
                 'created_at' => $now, 'updated_at' => $now
             ]);
-
-            // Disability
             DB::table('children_with_disability')->insert([
                 'year' => 2026, 'lgu_name' => $lgu, 'male' => 0, 'female' => 0, 'total' => 0,
                 'created_at' => $now, 'updated_at' => $now
             ]);
-
-            // IP Children
             DB::table('ip_children')->insert([
                 'year' => 2026, 'lgu_name' => $lgu, 'male' => 0, 'female' => 0, 'total' => 0,
                 'created_at' => $now, 'updated_at' => $now
