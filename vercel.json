@@ -6,11 +6,19 @@
             "use": "vercel-php@0.7.3"
         },
         {
-            "src": "/public/**",
+            "src": "public/**",
             "use": "@vercel/static"
         }
     ],
     "routes": [
+        {
+            "src": "/bg.jpg",
+            "dest": "/public/bg.jpg"
+        },
+        {
+            "src": "/logo-hri.png",
+            "dest": "/public/logo-hri.png"
+        },
         {
             "src": "/build/(.*)",
             "dest": "/public/build/$1"
@@ -23,11 +31,20 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
+        "APP_URL": "https://pswdo.phi.vercel.app",
         "APP_KEY": "base64:5129eVy5wTS/+PMfS4/bLCuUgDdVHL/K/bJhRqjnl8Q=",
         "CACHE_DRIVER": "array",
         "SESSION_DRIVER": "cookie",
+        "SESSION_SECURE_COOKIE": "true",
         "QUEUE_CONNECTION": "sync",
         "VIEW_COMPILED_PATH": "/tmp",
-        "LOG_CHANNEL": "stderr"
+        "LOG_CHANNEL": "stderr",
+        "DB_CONNECTION": "pgsql",
+        "DB_HOST": "ep-old-scene-aist75qh-pooler.c-4.us-east-1.aws.neon.tech",
+        "DB_PORT": "5432",
+        "DB_DATABASE": "neondb",
+        "DB_USERNAME": "neondb_owner",
+        "DB_PASSWORD": "npg_f9nkMzcJrmT5",
+        "POSTGRES_URL": "postgresql://neondb_owner:npg_f9nkMzcJrmT5@ep-old-scene-aist75qh-pooler.c-4.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require"
     }
 }
