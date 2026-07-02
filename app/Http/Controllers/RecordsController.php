@@ -8,7 +8,7 @@ class RecordsController extends Controller
 {
     private function currentYear(): int
     {
-        return (int) date('Y');
+        return 2025;
     }
 
     private function tableForCurrentYear(string $table)

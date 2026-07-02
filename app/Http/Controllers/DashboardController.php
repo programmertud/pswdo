@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $year = (int) date('Y');
+        $year = 2025;
 
         $totalChildren = DB::table('lgu_populations')->where('year', $year)->sum('total');
         $totalDisability = DB::table('children_with_disability')->where('year', $year)->sum('total');
