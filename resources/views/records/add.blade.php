@@ -374,11 +374,7 @@
 
 </div>
 
-{{-- Info card --}}
-<div style="margin-top:20px; padding:16px 20px; background:var(--white); border-radius:12px; border-left:4px solid var(--gold); box-shadow:var(--shadow); font-size:13px; color:var(--muted); line-height:1.6;">
-    <strong style="color:var(--text);">Note:</strong> Submitting a record for an LGU that already exists will <strong>update</strong> the existing entry rather than create a duplicate. All fields except LGU name are optional — leave blank if data is unavailable.
-</div>
-</div>
+
 @endsection
 
 @push('scripts')
