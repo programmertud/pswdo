@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('page-title', 'Dashboard')
-@section('page-sub', 'Overview of Children Data — Surigao del Norte 2025')
+@section('page-sub', 'Overview of Children Data — Surigao del Norte ' . date('Y'))
 
 @section('content')
 

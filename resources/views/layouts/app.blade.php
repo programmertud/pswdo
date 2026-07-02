@@ -571,8 +571,8 @@
         <div class="sidebar-brand">
             <img src="{{ asset('logo-hri.png') }}" alt="CSWDO Logo" class="logo-img">
             <div class="brand-text">
-                <h1>Children Social Welfare<br>&amp; Development Office</h1>
-                <p>Surigao del Norte · CSWDO</p>
+                <h1>Provincial Social Welfare<br>&amp; Development Office</h1>
+                <p>Surigao del Norte · PSWDO</p>
             </div>
         </div>
 
@@ -652,7 +652,7 @@
                     Sign Out
                 </button>
             </form>
-            <p class="footer-note">Database on Children 2025<br>Province of Surigao del Norte</p>
+            <p class="footer-note">Database on Children {{ date('Y') }}<br>Province of Surigao del Norte</p>
         </div>
     </aside>
 
@@ -662,7 +662,7 @@
         <header class="topbar">
             <div class="topbar-title">
                 <h2>@yield('page-title', 'Dashboard')</h2>
-                <p>@yield('page-sub', 'Children Social Welfare & Development Office')</p>
+                <p>@yield('page-sub', 'Provincial Social Welfare & Development Office')</p>
             </div>
             <div class="topbar-meta">
                 <span class="province-badge">Surigao del Norte</span>

@@ -224,8 +224,8 @@
             <div class="logo-wrap">
                 <img src="{{ asset('logo-hri.png') }}" alt="CSWDO Logo">
             </div>
-            <h1>Children Social Welfare<br>&amp; Development Office</h1>
-            <p>Surigao del Norte · CSWDO</p>
+            <h1>Provincial Social Welfare<br>&amp; Development Office</h1>
+            <p>Surigao del Norte · PSWDO</p>
         </div>
 
         <div class="accent-strip"></div>
@@ -291,7 +291,7 @@
         </div>
 
         <div class="card-footer">
-            <p>Database on Children 2025 &bull; Province of Surigao del Norte</p>
+            <p>Database on Children {{ date('Y') }} &bull; Province of Surigao del Norte</p>
         </div>
     </div>
 </div>
