@@ -62,11 +62,19 @@
                 padding: 3px 4px;
             }
             .category-title {
-                font-size: 16px;
-                margin-bottom: 5px;
+                font-size: 14px;
+                margin-bottom: 3px;
             }
             .print-header {
-                margin-bottom: 10px;
+                margin-bottom: 5px;
+            }
+            .header-logo {
+                height: 45px;
+                width: 45px;
+            }
+            .header-banner {
+                padding: 6px 10px;
+                font-size: 10px;
             }
         }
 
@@ -169,7 +177,7 @@
         .print-footer {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 10px;
             page-break-inside: avoid;
         }
 
