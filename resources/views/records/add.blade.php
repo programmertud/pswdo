@@ -284,17 +284,21 @@
                     <span class="hint">Children in Need of Special Protection</span>
                 </div>
                 <div class="form-group">
-                    <label>CAR/CICL Male</label>
-                    <input type="number" name="car_cicl_male" class="form-control" min="0" placeholder="e.g. 12">
+                    <label>CAR &amp; CICL Cases</label>
+                    <input type="number" name="car_cicl_cases" class="form-control" min="0" placeholder="e.g. 13">
                 </div>
                 <div class="form-group">
-                    <label>CAR/CICL Female</label>
+                    <label>Total Male</label>
+                    <input type="number" name="car_cicl_male" class="form-control" min="0" placeholder="e.g. 10">
+                </div>
+                <div class="form-group">
+                    <label>Total Female</label>
                     <input type="number" name="car_cicl_female" class="form-control" min="0" placeholder="e.g. 3">
                 </div>
                 <div class="form-group">
-                    <label>CAR/CICL Total</label>
-                    <input type="number" name="car_cicl_total" class="form-control" min="0" placeholder="e.g. 15">
-                    <span class="hint">Leave blank to auto-sum</span>
+                    <label>Overall Total</label>
+                    <input type="number" name="car_cicl_total" class="form-control" min="0" placeholder="e.g. 13">
+                    <span class="hint">Leave blank to auto-sum Male + Female</span>
                 </div>
             </div>
             <div class="form-footer" style="margin-top:24px;">
