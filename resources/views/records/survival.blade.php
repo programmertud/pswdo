@@ -28,7 +28,7 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
         <span class="stat-value">{{ number_format($totals['pregnant_adolescents_10_19']) }}</span>
     </div>
     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-        <a href="{{ route('exports.download', ['dataset' => 'survival', 'format' => 'pdf']) }}" class="btn btn-outline btn-sm">PDF</a>
+        <a href="{{ route('exports.download', ['dataset' => 'survival', 'format' => 'pdf']) }}" target="_blank" class="btn btn-outline btn-sm">PDF</a>
         <a href="{{ route('exports.download', ['dataset' => 'survival', 'format' => 'excel']) }}" class="btn btn-outline btn-sm">Excel</a>
     </div>
 </div>

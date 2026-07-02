@@ -44,9 +44,14 @@ class ExportController extends Controller
                 ->header('Content-Disposition', "attachment; filename=\"{$filename}.xls\"");
         }
 
-        return response($this->makePdf($config['title'], $year, $rows, $totals, $config['widths']))
-            ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', "attachment; filename=\"{$filename}.pdf\"");
+        return view('records.print', [
+            'title' => $config['title'],
+            'year' => $year,
+            'headers' => array_keys($totals),
+            'rows' => $rows,
+            'totals' => $totals,
+            'dataset' => $dataset
+        ]);
     }
 
     private function datasetConfig(string $dataset): ?array
