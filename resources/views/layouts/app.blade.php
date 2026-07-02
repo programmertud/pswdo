@@ -297,16 +297,20 @@
 
         .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
         .data-table th {
-            background: #f8fafc;
+            background: var(--gold);
             padding: 10px 14px;
-            text-align: left;
+            text-align: center;
             font-size: 11px;
-            font-weight: 600;
-            color: var(--muted);
+            font-weight: 700;
+            color: #1a1a1a;
             text-transform: uppercase;
             letter-spacing: .5px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #d4861a;
+            border-right: 1px solid #d4861a;
         }
+        .data-table th:last-child { border-right: none; }
+        .data-table td { border-right: 1px solid #e2e8f0; }
+        .data-table td:last-child { border-right: none; }
         .data-table td {
             padding: 11px 14px;
             border-bottom: 1px solid #f1f5f9;
