@@ -60,44 +60,44 @@
             }
             .print-header {
                 margin-bottom: 2mm !important;
-                gap: 10px !important;
+                gap: 15px !important;
             }
             .header-logo {
-                height: 40px !important;
-                width: 40px !important;
+                height: 45px !important;
+                width: 45px !important;
             }
             .header-banner {
-                padding: 4px 8px !important;
-                font-size: 9px !important;
+                padding: 6px 12px !important;
+                font-size: 11px !important;
             }
             .category-title {
-                font-size: 16px !important;
-                margin-bottom: 3mm !important;
+                font-size: 18px !important;
+                margin-bottom: 4mm !important;
             }
             .print-table {
-                font-size: 9px !important;
-                margin-bottom: 3mm !important;
+                font-size: 11px !important;
+                margin-bottom: 4mm !important;
             }
             .print-table th {
-                font-size: 9px !important;
-                padding: 4px 5px !important;
+                font-size: 11px !important;
+                padding: 6px 6px !important;
             }
             .print-table td {
-                padding: 4px 5px !important;
+                padding: 6px 6px !important;
                 border: 0.5px solid #94a3b8 !important;
             }
             .print-footer {
-                margin-top: 4mm !important;
+                margin-top: 5mm !important;
             }
             .sig-label {
-                margin-bottom: 25px !important;
+                margin-bottom: 30px !important;
                 font-size: 11px !important;
             }
             .sig-name {
-                font-size: 12px !important;
+                font-size: 13px !important;
             }
             .sig-title {
-                font-size: 10px !important;
+                font-size: 11px !important;
             }
         }
 
