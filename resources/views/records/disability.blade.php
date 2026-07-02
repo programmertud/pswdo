@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Children with Disability')
 @section('page-title', 'Children with Disability')
-@section('page-sub', 'By Local Government Unit — Surigao del Norte {{ date("Y") }}')
+@section('page-sub', 'By Local Government Unit — Surigao del Norte ' . date("Y"))
 
 @php
 $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna',

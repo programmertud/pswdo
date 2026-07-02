@@ -38,7 +38,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: url('{{ asset("bg.jpg") }}') center/cover no-repeat;
+            background: linear-gradient(135deg, #091e42 0%, #0f2d5e 40%, #0d9488 100%);
             padding: 24px;
             position: relative;
             overflow: hidden;
@@ -78,7 +78,7 @@
 
         /* Card header */
         .card-header {
-            background: rgba(9, 30, 66, 0.2);
+            background: rgba(9, 30, 66, 0.4);
             padding: 36px 32px 28px;
             text-align: center;
         }

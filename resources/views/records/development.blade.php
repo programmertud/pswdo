@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Development')
 @section('page-title', 'Development Records')
-@section('page-sub', 'Children in School & School Dropouts Reintegrated — {{ date("Y") }}')
+@section('page-sub', 'Children in School & School Dropouts Reintegrated — ' . date("Y"))
 
 @php
 $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna',
