@@ -33,20 +33,14 @@ class ProfileController extends Controller
             'updated_at' => now(),
         ];
 
-        // Handle avatar upload
+        // Handle avatar upload — store as base64 in DB (Vercel filesystem is read-only)
         if ($request->hasFile('avatar')) {
             $request->validate(['avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048']);
 
-            // Delete old avatar if it exists
-            $user = DB::table('users')->find($userId);
-            if ($user->avatar && file_exists(public_path($user->avatar))) {
-                unlink(public_path($user->avatar));
-            }
-
             $file = $request->file('avatar');
-            $filename = 'avatar_' . $userId . '_' . time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('avatars'), $filename);
-            $updateData['avatar'] = 'avatars/' . $filename;
+            $mime = $file->getMimeType();
+            $base64 = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
+            $updateData['avatar'] = $base64;
         }
 
         DB::table('users')->where('id', $userId)->update($updateData);

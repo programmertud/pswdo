@@ -321,8 +321,20 @@
     {{-- Avatar + Name Section --}}
     <div class="avatar-section">
         <div class="avatar-wrapper" id="avatar-preview-wrapper">
-            @if($user->avatar && file_exists(public_path($user->avatar)))
-                <img src="{{ asset($user->avatar) }}?v={{ time() }}" class="avatar-img" id="avatar-preview-img" alt="Profile Photo">
+            @if($user->avatar)
+                @php
+                    $profileAvatarSrc = str_starts_with($user->avatar, 'data:')
+                        ? $user->avatar
+                        : (file_exists(public_path($user->avatar)) ? asset($user->avatar) . '?v=' . time() : null);
+                @endphp
+                @if($profileAvatarSrc)
+                    <img src="{{ $profileAvatarSrc }}" class="avatar-img" id="avatar-preview-img" alt="Profile Photo">
+                @else
+                    <div class="avatar-initials" id="avatar-initials-div">
+                        {{ strtoupper(substr($user->name ?? 'A', 0, 1)) }}
+                    </div>
+                    <img src="" class="avatar-img" id="avatar-preview-img" alt="Profile Photo" style="display:none;">
+                @endif
             @else
                 <div class="avatar-initials" id="avatar-initials-div">
                     {{ strtoupper(substr($user->name ?? 'A', 0, 1)) }}
