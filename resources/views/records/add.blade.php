@@ -212,9 +212,9 @@
     </div>
 
     {{-- ── DEVELOPMENT ────────────────────────────────────────────── --}}
-    <div class="form-panel" id="panel-development">
+        <div class="form-panel" id="panel-development">
         <p style="font-size:13px; color:var(--muted); margin-bottom:20px;">
-            Add or update school enrollment and reintegration data per LGU.
+            Add or update school enrollment and out-of-school children data per LGU.
         </p>
         <form method="POST" action="{{ route('add.development') }}">
             @csrf
@@ -228,17 +228,38 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="form-group" style="grid-column:1/-1; border-bottom:2px solid #e2e8f0; padding-bottom:12px; margin-bottom:8px;">
+                    <label style="color:#059669; font-size:15px;">📚 Children In School</label>
+                </div>
                 <div class="form-group">
-                    <label>Male in School</label>
+                    <label>Male In School</label>
                     <input type="number" name="children_in_school_male" class="form-control" min="0" placeholder="e.g. 128">
                 </div>
                 <div class="form-group">
-                    <label>Female in School</label>
+                    <label>Female In School</label>
                     <input type="number" name="children_in_school_female" class="form-control" min="0" placeholder="e.g. 116">
                 </div>
                 <div class="form-group">
-                    <label>Total in School</label>
-                    <input type="number" name="children_in_school_total" class="form-control" min="0" placeholder="e.g. 244">
+                    <label>Total In School</label>
+                    <input type="number" name="children_in_school_total" id="dev_in_total" class="form-control" min="0" placeholder="e.g. 244">
+                    <span class="hint">Leave blank to auto-sum</span>
+                </div>
+
+                <div class="form-group" style="grid-column:1/-1; border-bottom:2px solid #e2e8f0; padding-bottom:12px; margin-bottom:8px; margin-top:8px;">
+                    <label style="color:#dc2626; font-size:15px;">🚫 Children Out of School</label>
+                </div>
+                <div class="form-group">
+                    <label>Male Out of School</label>
+                    <input type="number" name="children_out_of_school_male" class="form-control" min="0" placeholder="e.g. 12">
+                </div>
+                <div class="form-group">
+                    <label>Female Out of School</label>
+                    <input type="number" name="children_out_of_school_female" class="form-control" min="0" placeholder="e.g. 8">
+                </div>
+                <div class="form-group">
+                    <label>Total Out of School</label>
+                    <input type="number" name="children_out_of_school_total" id="dev_out_total" class="form-control" min="0" placeholder="e.g. 20">
                     <span class="hint">Leave blank to auto-sum</span>
                 </div>
             </div>
@@ -252,7 +273,7 @@
     {{-- ── PROTECTION ─────────────────────────────────────────────── --}}
     <div class="form-panel" id="panel-protection">
         <p style="font-size:13px; color:var(--muted); margin-bottom:20px;">
-            Record CNSP and CAR/CICL case data per LGU.
+            Record CNSP, CAR, and CICL case data per LGU.
         </p>
         <form method="POST" action="{{ route('add.protection') }}">
             @csrf
@@ -266,28 +287,42 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>CNSP Cases</label>
-                    <input type="number" name="cnsp_cases" class="form-control" min="0" placeholder="e.g. 2">
-                    <span class="hint">Children in Need of Special Protection</span>
+
+                <div class="form-group" style="grid-column:1/-1; border-bottom:2px solid #e2e8f0; padding-bottom:12px; margin-bottom:8px;">
+                    <label style="color:#0f172a; font-size:15px;">🛡️ Protection Data</label>
                 </div>
-                <div class="form-group">
-                    <label>CAR &amp; CICL Cases</label>
-                    <input type="number" name="car_cicl_cases" class="form-control" min="0" placeholder="e.g. 13">
+
+                <div style="grid-column:1/-1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                    <div class="form-group">
+                        <label style="color:#dc2626;">CNSP Cases</label>
+                        <input type="number" name="cnsp_cases" class="form-control" min="0" placeholder="e.g. 2">
+                    </div>
+                    <div class="form-group">
+                        <label style="color:#b45309;">CAR Cases</label>
+                        <input type="number" name="car_cases" class="form-control" min="0" placeholder="e.g. 8">
+                    </div>
+                    <div class="form-group">
+                        <label style="color:#7c3aed;">CICL Cases</label>
+                        <input type="number" name="cicl_cases" class="form-control" min="0" placeholder="e.g. 5">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Total Male</label>
-                    <input type="number" name="car_cicl_male" class="form-control" min="0" placeholder="e.g. 10">
+
+                <div style="grid-column:1/-1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px;">
+                    <div class="form-group">
+                        <label>Male</label>
+                        <input type="number" name="car_cicl_male" class="form-control" min="0" placeholder="e.g. 5">
+                    </div>
+                    <div class="form-group">
+                        <label>Female</label>
+                        <input type="number" name="car_cicl_female" class="form-control" min="0" placeholder="e.g. 3">
+                    </div>
+                    <div class="form-group">
+                        <label>Total</label>
+                        <input type="number" name="car_cicl_total" class="form-control" min="0" placeholder="e.g. 8">
+                        <span class="hint">Leave blank to auto-sum Male + Female</span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Total Female</label>
-                    <input type="number" name="car_cicl_female" class="form-control" min="0" placeholder="e.g. 3">
-                </div>
-                <div class="form-group">
-                    <label>Overall Total</label>
-                    <input type="number" name="car_cicl_total" class="form-control" min="0" placeholder="e.g. 13">
-                    <span class="hint">Leave blank to auto-sum Male + Female</span>
-                </div>
+
             </div>
             <div class="form-footer" style="margin-top:24px;">
                 <button type="submit" class="btn btn-primary">Save Protection Record</button>
@@ -410,6 +445,7 @@
         setupAutoSum('#panel-population input[name="male"]', '#panel-population input[name="female"]', '#panel-population input[name="total"]');
         setupAutoSum('#panel-survival input[name="male"]', '#panel-survival input[name="female"]', '#panel-survival input[name="total"]');
         setupAutoSum('#panel-development input[name="children_in_school_male"]', '#panel-development input[name="children_in_school_female"]', '#panel-development input[name="children_in_school_total"]');
+        setupAutoSum('#panel-development input[name="children_out_of_school_male"]', '#panel-development input[name="children_out_of_school_female"]', '#panel-development input[name="children_out_of_school_total"]');
         setupAutoSum('#panel-protection input[name="car_cicl_male"]', '#panel-protection input[name="car_cicl_female"]', '#panel-protection input[name="car_cicl_total"]');
         setupAutoSum('#panel-disability input[name="male"]', '#panel-disability input[name="female"]', '#panel-disability input[name="total"]');
         setupAutoSum('#panel-ip input[name="male"]', '#panel-ip input[name="female"]', '#panel-ip input[name="total"]');

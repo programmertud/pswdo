@@ -641,14 +641,6 @@
                 IP Children
             </a>
 
-            <!-- Settings -->
-            <div class="nav-section-label">Settings</div>
-
-            <a href="{{ route('profile.index') }}" class="nav-item {{ request()->routeIs('profile.index') ? 'active' : '' }}">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                My Profile
-            </a>
-
             <a href="{{ route('users.index') }}" class="nav-item {{ request()->routeIs('users.index') ? 'active' : '' }}">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
                 User Management
@@ -657,21 +649,7 @@
         </nav>
 
         <div class="sidebar-footer">
-            <div class="user-row">
-                <div class="user-avatar">{{ strtoupper(substr(session('name', session('username', 'A')), 0, 1)) }}</div>
-                <div class="user-info">
-                    <p>{{ session('name', ucfirst(session('username', 'Admin'))) }}</p>
-                    <span>Administrator</span>
-                </div>
-            </div>
-            <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
-                @csrf
-                <button type="submit" class="btn-logout">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-                    Sign Out
-                </button>
-            </form>
-            <p class="footer-note">Database on Children {{ date('Y') }}<br>Province of Surigao del Norte</p>
+            <p class="footer-note" style="text-align: center; margin-bottom: 8px;">Database on Children {{ date('Y') }}<br>Province of Surigao del Norte</p>
         </div>
     </aside>
 
@@ -683,9 +661,38 @@
                 <h2>@yield('page-title', 'Dashboard')</h2>
                 <p>@yield('page-sub', 'Provincial Social Welfare & Development Office')</p>
             </div>
-            <div class="topbar-meta">
+            <div class="topbar-meta" style="gap: 12px;">
+                <div id="realtime-clock" style="font-size: 11.5px; font-weight: 500; color: var(--muted); margin-right: 8px; text-align: right; line-height: 1.3;">
+                    <div id="clock-date"></div>
+                    <div id="clock-time" style="font-weight: 600; color: var(--navy);"></div>
+                </div>
+                
                 <span class="province-badge">Surigao del Norte</span>
                 <span class="year-badge">{{ date('Y') }}</span>
+                
+                <div style="width: 1px; height: 24px; background: var(--border); margin: 0 4px;"></div>
+                
+                <a href="{{ route('profile.index') }}" title="My Profile" style="color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                    @php $topUser = \Illuminate\Support\Facades\DB::table('users')->find(\Illuminate\Support\Facades\Session::get('user_id')); @endphp
+                    <div style="text-align: right; line-height: 1.3;">
+                        <div style="font-size: 13px; font-weight: 600; color: var(--text);">{{ session('name', 'Admin') }}</div>
+                        <div style="font-size: 10.5px; color: var(--muted);">{{ $topUser->job_title ?? 'Administrator' }}</div>
+                    </div>
+                    <div style="width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: #f1f5f9; flex-shrink: 0; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center;">
+                        @if($topUser && $topUser->avatar && file_exists(public_path($topUser->avatar)))
+                            <img src="{{ asset($topUser->avatar) }}" style="width:36px;height:36px;object-fit:cover;" alt="avatar">
+                        @else
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        @endif
+                    </div>
+                </a>
+                
+                <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
+                    @csrf
+                    <button type="submit" title="Sign Out" style="background: rgba(220,38,38,.1); border: none; cursor: pointer; color: var(--red); display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; transition: background .15s;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    </button>
+                </form>
             </div>
         </header>
 
@@ -736,6 +743,17 @@ document.querySelectorAll('.form-tab').forEach(tab => {
         document.getElementById('panel-' + target)?.classList.add('active');
     });
 });
+// Real-time clock
+function updateClock() {
+    const now = new Date();
+    const optionsDate = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+    const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+    
+    document.getElementById('clock-date').textContent = now.toLocaleDateString('en-US', optionsDate);
+    document.getElementById('clock-time').textContent = now.toLocaleTimeString('en-US', optionsTime);
+}
+setInterval(updateClock, 1000);
+updateClock();
 </script>
 @stack('scripts')
 </body>

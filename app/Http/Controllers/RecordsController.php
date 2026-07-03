@@ -63,7 +63,7 @@ class RecordsController extends Controller
         $records = (clone $query)->orderBy('lgu_name')->get();
         $totals = [
             'cnsp_cases' => (clone $query)->sum('cnsp_cases'),
-            'car_cicl_cases' => (clone $query)->sum('car_cicl_cases'),
+            'car_cicl_cases' => (clone $query)->sum('car_cases') + (clone $query)->sum('cicl_cases'),
             'male' => (clone $query)->sum('car_cicl_male'),
             'female' => (clone $query)->sum('car_cicl_female'),
             'total' => (clone $query)->sum('car_cicl_total'),

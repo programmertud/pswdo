@@ -160,15 +160,19 @@ class AddRecordController extends Controller
     public function storeDevelopment(Request $request)
     {
         $data = $request->validate([
-            'lgu_name'                  => 'required|string|max:100',
-            'children_in_school_male'   => 'nullable|integer|min:0',
-            'children_in_school_female' => 'nullable|integer|min:0',
-            'children_in_school_total'  => 'nullable|integer|min:0',
-            'remarks'                   => 'nullable|string|max:255',
+            'lgu_name'                       => 'required|string|max:100',
+            'children_in_school_male'        => 'nullable|integer|min:0',
+            'children_in_school_female'      => 'nullable|integer|min:0',
+            'children_in_school_total'       => 'nullable|integer|min:0',
+            'children_out_of_school_male'    => 'nullable|integer|min:0',
+            'children_out_of_school_female'  => 'nullable|integer|min:0',
+            'children_out_of_school_total'   => 'nullable|integer|min:0',
+            'remarks'                        => 'nullable|string|max:255',
         ]);
         
         $this->accumulateRecord('development_records', $data, [
-            'children_in_school_male','children_in_school_female','children_in_school_total'
+            'children_in_school_male','children_in_school_female','children_in_school_total',
+            'children_out_of_school_male','children_out_of_school_female','children_out_of_school_total',
         ]);
         return redirect()->route('records.development')->with('success', "Development record for {$data['lgu_name']} saved.");
     }
@@ -176,11 +180,14 @@ class AddRecordController extends Controller
     public function updateDevelopment(Request $request, int $id)
     {
         $data = $request->validate([
-            'lgu_name'                  => 'required|string|max:100',
-            'children_in_school_male'   => 'nullable|integer|min:0',
-            'children_in_school_female' => 'nullable|integer|min:0',
-            'children_in_school_total'  => 'nullable|integer|min:0',
-            'remarks'                   => 'nullable|string|max:255',
+            'lgu_name'                       => 'required|string|max:100',
+            'children_in_school_male'        => 'nullable|integer|min:0',
+            'children_in_school_female'      => 'nullable|integer|min:0',
+            'children_in_school_total'       => 'nullable|integer|min:0',
+            'children_out_of_school_male'    => 'nullable|integer|min:0',
+            'children_out_of_school_female'  => 'nullable|integer|min:0',
+            'children_out_of_school_total'   => 'nullable|integer|min:0',
+            'remarks'                        => 'nullable|string|max:255',
         ]);
         $this->updateById('development_records', $id, $data);
         return redirect()->route('records.development')->with('success', "Development record for {$data['lgu_name']} updated.");
@@ -200,14 +207,17 @@ class AddRecordController extends Controller
         $data = $request->validate([
             'lgu_name'        => 'required|string|max:100',
             'cnsp_cases'      => 'nullable|integer|min:0',
-            'car_cicl_cases'  => 'nullable|integer|min:0',
+            'car_cases'       => 'nullable|integer|min:0',
+            'cicl_cases'      => 'nullable|integer|min:0',
             'car_cicl_male'   => 'nullable|integer|min:0',
             'car_cicl_female' => 'nullable|integer|min:0',
             'car_cicl_total'  => 'nullable|integer|min:0',
         ]);
         
+        $data['car_cicl_cases'] = ($data['car_cases'] ?? 0) + ($data['cicl_cases'] ?? 0);
+
         $this->accumulateRecord('protection_records', $data, [
-            'cnsp_cases','car_cicl_cases','car_cicl_male','car_cicl_female','car_cicl_total'
+            'cnsp_cases','car_cases','cicl_cases','car_cicl_cases','car_cicl_male','car_cicl_female','car_cicl_total'
         ]);
         return redirect()->route('records.protection')->with('success', "Protection record for {$data['lgu_name']} saved.");
     }
@@ -217,11 +227,15 @@ class AddRecordController extends Controller
         $data = $request->validate([
             'lgu_name'        => 'required|string|max:100',
             'cnsp_cases'      => 'nullable|integer|min:0',
-            'car_cicl_cases'  => 'nullable|integer|min:0',
+            'car_cases'       => 'nullable|integer|min:0',
+            'cicl_cases'      => 'nullable|integer|min:0',
             'car_cicl_male'   => 'nullable|integer|min:0',
             'car_cicl_female' => 'nullable|integer|min:0',
             'car_cicl_total'  => 'nullable|integer|min:0',
         ]);
+        
+        $data['car_cicl_cases'] = ($data['car_cases'] ?? 0) + ($data['cicl_cases'] ?? 0);
+
         $this->updateById('protection_records', $id, $data);
         return redirect()->route('records.protection')->with('success', "Protection record for {$data['lgu_name']} updated.");
     }

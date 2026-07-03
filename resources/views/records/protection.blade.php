@@ -43,7 +43,7 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
                     <th>No.</th>
                     <th>LGU</th>
                     <th class="num">CNSP Cases</th>
-                    <th class="num">CAR & CICL</th>
+                    <th class="num">CAR & CICL Cases</th>
                     <th class="num">Male</th>
                     <th class="num">Female</th>
                     <th class="num">Total</th>
@@ -64,12 +64,11 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
                         @endif
                     </td>
                     <td class="num">
-                        @if($r->car_cicl_cases !== null)
-                            @php $c2 = $r->car_cicl_cases; $cls2 = $c2 >= 10 ? 'pill-red' : ($c2 >= 3 ? 'pill-amber' : 'pill-green'); @endphp
-                            <span class="pill {{ $cls2 }}">{{ number_format($c2) }}</span>
-                        @else
-                            <span class="null-dash">—</span>
-                        @endif
+                        @php 
+                            $combined = (int)$r->car_cases + (int)$r->cicl_cases; 
+                            $cls2 = $combined >= 10 ? 'pill-red' : ($combined >= 3 ? 'pill-amber' : 'pill-green'); 
+                        @endphp
+                        <span class="pill {{ $cls2 }}">{{ number_format($combined) }}</span>
                     </td>
                     <td class="num">{!! $r->car_cicl_male !== null ? number_format($r->car_cicl_male) : '<span class="null-dash">—</span>' !!}</td>
                     <td class="num">{!! $r->car_cicl_female !== null ? number_format($r->car_cicl_female) : '<span class="null-dash">—</span>' !!}</td>
@@ -82,7 +81,7 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
                         @endif
                     </td>
                     <td class="action-cell" style="text-align:center;">
-                        <button class="btn-edit" onclick="openEditModal({{ $r->id }}, '{{ addslashes($r->lgu_name) }}', {{ $r->cnsp_cases ?? 'null' }}, {{ $r->car_cicl_cases ?? 'null' }}, {{ $r->car_cicl_male ?? 'null' }}, {{ $r->car_cicl_female ?? 'null' }}, {{ $r->car_cicl_total ?? 'null' }})">
+                        <button class="btn-edit" onclick="openEditModal({{ $r->id }}, '{{ addslashes($r->lgu_name) }}', {{ $r->cnsp_cases ?? 'null' }}, {{ $r->car_cases ?? 'null' }}, {{ $r->cicl_cases ?? 'null' }}, {{ $r->car_cicl_male ?? 'null' }}, {{ $r->car_cicl_female ?? 'null' }}, {{ $r->car_cicl_total ?? 'null' }})">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                             Edit
                         </button>
@@ -136,19 +135,23 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
                         <span class="hint">Children in Need of Special Protection</span>
                     </div>
                     <div class="form-group">
-                        <label>Total CAR & CICL Cases</label>
-                        <input type="number" name="car_cicl_cases" class="form-control" min="0" placeholder="e.g. 13">
+                        <label>CAR Cases</label>
+                        <input type="number" name="car_cases" class="form-control" min="0" placeholder="e.g. 8">
                     </div>
                     <div class="form-group">
-                        <label>CAR/CICL — Male</label>
+                        <label>CICL Cases</label>
+                        <input type="number" name="cicl_cases" class="form-control" min="0" placeholder="e.g. 5">
+                    </div>
+                    <div class="form-group">
+                        <label>Male</label>
                         <input type="number" name="car_cicl_male" class="form-control" min="0" placeholder="e.g. 12">
                     </div>
                     <div class="form-group">
-                        <label>CAR/CICL — Female</label>
+                        <label>Female</label>
                         <input type="number" name="car_cicl_female" class="form-control" min="0" placeholder="e.g. 3">
                     </div>
                     <div class="form-group">
-                        <label>CAR/CICL — Total</label>
+                        <label>Total</label>
                         <input type="number" name="car_cicl_total" class="form-control" min="0" placeholder="e.g. 15">
                     </div>
                 </div>
@@ -184,19 +187,23 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
                         <input type="number" name="cnsp_cases" id="edit_cnsp" class="form-control" min="0">
                     </div>
                     <div class="form-group">
-                        <label>Total CAR & CICL Cases</label>
-                        <input type="number" name="car_cicl_cases" id="edit_cases" class="form-control" min="0">
+                        <label>CAR Cases</label>
+                        <input type="number" name="car_cases" id="edit_car" class="form-control" min="0">
                     </div>
                     <div class="form-group">
-                        <label>CAR/CICL — Male</label>
+                        <label>CICL Cases</label>
+                        <input type="number" name="cicl_cases" id="edit_cicl" class="form-control" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Male</label>
                         <input type="number" name="car_cicl_male" id="edit_male" class="form-control" min="0">
                     </div>
                     <div class="form-group">
-                        <label>CAR/CICL — Female</label>
+                        <label>Female</label>
                         <input type="number" name="car_cicl_female" id="edit_female" class="form-control" min="0">
                     </div>
                     <div class="form-group">
-                        <label>CAR/CICL — Total</label>
+                        <label>Total</label>
                         <input type="number" name="car_cicl_total" id="edit_total" class="form-control" min="0">
                     </div>
                 </div>
@@ -214,11 +221,12 @@ $lgus = ['Alegria','Bacuag','Burgos','Claver','Dapa','Del Carmen','General Luna'
 <script>
 function openAddModal() { document.getElementById('addModal').classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-function openEditModal(id, lgu, cnsp, cases, male, female, total) {
+function openEditModal(id, lgu, cnsp, car, cicl, male, female, total) {
     document.getElementById('editForm').action = '/add/protection/' + id;
     document.getElementById('edit_lgu').value    = lgu;
     document.getElementById('edit_cnsp').value   = cnsp ?? '';
-    document.getElementById('edit_cases').value  = cases ?? '';
+    document.getElementById('edit_car').value    = car ?? '';
+    document.getElementById('edit_cicl').value   = cicl ?? '';
     document.getElementById('edit_male').value   = male ?? '';
     document.getElementById('edit_female').value = female ?? '';
     document.getElementById('edit_total').value  = total ?? '';
