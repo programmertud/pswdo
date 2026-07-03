@@ -20,8 +20,8 @@
             --gold-lt:   #fdb940;
             --bg:        #f0f4f9;
             --white:     #ffffff;
-            --text:      #000000;
-            --muted:     #000000;
+            --text:      #ffffff;
+            --muted:     #cbd5e1;
             --border:    #e2e8f0;
             --red:       #dc2626;
         }
@@ -38,6 +38,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 40px;
             background: linear-gradient(135deg, #091e42 0%, #0f2d5e 40%, #0d9488 100%);
             padding: 24px;
             position: relative;
@@ -61,6 +62,47 @@
             width: 350px; height: 350px;
             background: #fff;
             bottom: -120px; left: -80px;
+        }
+
+        .side-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,.25);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            z-index: 1;
+            color: #fff;
+        }
+        .side-panel h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--gold);
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+        .side-panel p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 1024px) {
+            .login-shell {
+                flex-direction: column;
+                padding: 40px 24px;
+                gap: 24px;
+                height: auto;
+            }
+            .side-panel {
+                max-width: 420px;
+                padding: 30px 24px;
+            }
+            .login-card {
+                order: -1;
+            }
         }
 
         .login-card {
@@ -99,12 +141,12 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 15px;
             font-weight: 800;
-            color: #000;
+            color: #ffffff;
             line-height: 1.4;
         }
         .card-header p {
             font-size: 11px;
-            color: #000;
+            color: #cbd5e1;
             font-weight: 600;
             margin-top: 4px;
             text-transform: uppercase;
@@ -218,6 +260,11 @@
 </head>
 <body>
 <div class="login-shell">
+    <div class="side-panel">
+        <h3>Our Mission</h3>
+        <p>To provide responsive and sustainable social welfare programs and services that promote the well-being and protect the rights of the marginalized, vulnerable, and disadvantaged sectors in the Province of Surigao del Norte.</p>
+    </div>
+
     <div class="login-card">
         <!-- Header -->
         <div class="card-header">
@@ -293,6 +340,11 @@
         <div class="card-footer">
             <p>Database on Children {{ date('Y') }} &bull; Province of Surigao del Norte</p>
         </div>
+    </div>
+
+    <div class="side-panel">
+        <h3>Our Vision</h3>
+        <p>A society where the poor, vulnerable, and disadvantaged are empowered for an improved quality of life and actively participating in community development.</p>
     </div>
 </div>
 </body>

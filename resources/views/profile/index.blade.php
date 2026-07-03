@@ -14,7 +14,7 @@
             </div>
             <div>
                 <h3 style="font-size:17px; font-weight:700; color:var(--navy); margin:0;">{{ session('name') }}</h3>
-                <span style="font-size:12px; color:var(--muted);">@{{ session('username') }} &bull; Administrator</span>
+                <span style="font-size:12px; color:var(--muted);">{{ session('username') }} &bull; Administrator</span>
             </div>
         </div>
     </div>
