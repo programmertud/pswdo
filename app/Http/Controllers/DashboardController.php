@@ -20,12 +20,13 @@ class DashboardController extends Controller
         $totalPregnant   = DB::table('survival_records')->where('year', $year)->sum('pregnant_adolescents_10_19');
 
         // Development
-        $totalDevelopment  = DB::table('development_records')->where('year', $year)->sum('children_in_school_total');
+        $inSchoolTotal     = DB::table('development_records')->where('year', $year)->sum('children_in_school_total');
         $developmentMale   = DB::table('development_records')->where('year', $year)->sum('children_in_school_male');
         $developmentFemale = DB::table('development_records')->where('year', $year)->sum('children_in_school_female');
         $totalOutOfSchool  = DB::table('development_records')->where('year', $year)->sum('children_out_of_school_total');
         $outOfSchoolMale   = DB::table('development_records')->where('year', $year)->sum('children_out_of_school_male');
         $outOfSchoolFemale = DB::table('development_records')->where('year', $year)->sum('children_out_of_school_female');
+        $totalDevelopment  = $inSchoolTotal + $totalOutOfSchool; // Combined total
 
         // Protection
         $totalCNSP = DB::table('protection_records')->where('year', $year)->sum('cnsp_cases');
@@ -60,7 +61,7 @@ class DashboardController extends Controller
         return view('dashboard.index', compact(
             'totalChildren', 'totalMale', 'totalFemale',
             'avgImmunization', 'totalPregnant',
-            'totalDevelopment', 'developmentMale', 'developmentFemale',
+            'totalDevelopment', 'inSchoolTotal', 'developmentMale', 'developmentFemale',
             'totalOutOfSchool', 'outOfSchoolMale', 'outOfSchoolFemale',
             'totalCNSP', 'totalCAR', 'totalCICL', 'protectionMale', 'protectionFemale',
             'totalDisability', 'disabilityMale', 'disabilityFemale',

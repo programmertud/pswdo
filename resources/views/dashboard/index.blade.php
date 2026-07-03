@@ -306,7 +306,7 @@
             </div>
             <div class="saas-value">{{ number_format($totalDevelopment) }}</div>
             <div class="saas-sub-info" style="background: #f0fdf4; color: #166534; padding: 6px 12px; border-radius: 4px; margin-left:0; margin-bottom:8px; border: 1px solid #dcfce7; display:flex; justify-content:space-between; width:100%;">
-                <span>In School: <strong>{{ number_format($totalDevelopment) }}</strong></span>
+                <span>In School: <strong>{{ number_format($inSchoolTotal) }}</strong></span>
                 <span>M: <strong>{{ number_format($developmentMale) }}</strong> F: <strong>{{ number_format($developmentFemale) }}</strong></span>
             </div>
             <div class="saas-sub-info" style="background: #fef2f2; color: #b91c1c; padding: 6px 12px; border-radius: 4px; margin-left:0; margin-top:0; border: 1px solid #fee2e2; display:flex; justify-content:space-between; width:100%;">
