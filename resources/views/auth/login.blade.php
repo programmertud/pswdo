@@ -38,11 +38,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
             background: linear-gradient(135deg, #091e42 0%, #0f2d5e 40%, #0d9488 100%);
             padding: 24px;
             position: relative;
             overflow: hidden;
+        }
+
+        .login-container {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 40px;
+            z-index: 1;
+            width: 100%;
+            max-width: 1200px;
         }
 
         /* Decorative circles */
@@ -70,7 +79,10 @@
             padding: 40px 30px;
             width: 100%;
             max-width: 320px;
-            text-align: justify;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             z-index: 1;
             position: relative;
             border-top: 15px solid #0f2d5e;
@@ -128,11 +140,10 @@
         }
 
         @media (max-width: 1024px) {
-            .login-shell {
+            .login-container {
                 flex-direction: column;
-                padding: 40px 24px;
+                align-items: center;
                 gap: 24px;
-                height: auto;
             }
             .side-panel {
                 max-width: 420px;
@@ -301,7 +312,8 @@
 </head>
 <body>
 <div class="login-shell">
-    <div class="side-panel">
+    <div class="login-container">
+        <div class="side-panel">
         <h3>MISSION</h3>
         <div class="title-decor"><span></span><div class="diamond"></div><span></span></div>
         <p>To uphold mandates by delivering inclusive and responsive social services that empower disadvantaged communities —including youth, children, women, elderly, persons with disabilities, and indigenous groups. Through sustainable economic programs, accessible healthcare, and responsible family planning, stability, dignity, and promotion of well-being.</p>
@@ -388,6 +400,7 @@
         <h3>VISION</h3>
         <div class="title-decor"><span></span><div class="diamond"></div><span></span></div>
         <p>A responsive organization with highly competent staff that provides prompt and efficient delivery of social services geared towards improved quality of life among the marginalized, disadvantaged, vulnerable, and impoverished segment of the Surigaonon society.</p>
+    </div>
     </div>
 </div>
 </body>
