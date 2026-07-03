@@ -65,28 +65,66 @@
         }
 
         .side-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            box-shadow: 0 25px 60px rgba(0,0,0,.25);
+            background: #ffffff;
+            box-shadow: 0 10px 40px rgba(0,0,0,.4);
             padding: 40px 30px;
             width: 100%;
-            max-width: 300px;
-            text-align: center;
+            max-width: 320px;
+            text-align: justify;
             z-index: 1;
-            color: #fff;
+            position: relative;
+            border-top: 15px solid #0f2d5e;
+            border-bottom: 15px solid #0f2d5e;
+            border-radius: 4px;
+        }
+        .side-panel::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background-color: #f5a623;
+        }
+        .side-panel::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 6px;
+            background-color: #f5a623;
         }
         .side-panel h3 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--gold);
-            font-size: 22px;
-            margin-bottom: 16px;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            color: #332211;
+            font-size: 34px;
+            text-align: center;
+            margin-bottom: 4px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .title-decor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .title-decor span {
+            width: 60px;
+            height: 1px;
+            background-color: #888;
+        }
+        .title-decor .diamond {
+            width: 8px;
+            height: 8px;
+            background-color: #d4af37;
+            transform: rotate(45deg);
         }
         .side-panel p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e2e8f0;
+            font-family: 'Cooper Black', 'Georgia', serif;
+            font-weight: 900;
+            font-size: 16.5px;
+            line-height: 1.25;
+            color: #2b2b2b;
+            margin: 0;
         }
 
         @media (max-width: 1024px) {
@@ -264,8 +302,9 @@
 <body>
 <div class="login-shell">
     <div class="side-panel">
-        <h3>Our Mission</h3>
-        <p>To provide responsive and sustainable social welfare programs and services that promote the well-being and protect the rights of the marginalized, vulnerable, and disadvantaged sectors in the Province of Surigao del Norte.</p>
+        <h3>MISSION</h3>
+        <div class="title-decor"><span></span><div class="diamond"></div><span></span></div>
+        <p>To uphold mandates by delivering inclusive and responsive social services that empower disadvantaged communities —including youth, children, women, elderly, persons with disabilities, and indigenous groups. Through sustainable economic programs, accessible healthcare, and responsible family planning, stability, dignity, and promotion of well-being.</p>
     </div>
 
     <div class="login-card">
@@ -346,8 +385,9 @@
     </div>
 
     <div class="side-panel">
-        <h3>Our Vision</h3>
-        <p>A society where the poor, vulnerable, and disadvantaged are empowered for an improved quality of life and actively participating in community development.</p>
+        <h3>VISION</h3>
+        <div class="title-decor"><span></span><div class="diamond"></div><span></span></div>
+        <p>A responsive organization with highly competent staff that provides prompt and efficient delivery of social services geared towards improved quality of life among the marginalized, disadvantaged, vulnerable, and impoverished segment of the Surigaonon society.</p>
     </div>
 </div>
 </body>
