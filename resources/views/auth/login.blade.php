@@ -211,6 +211,9 @@
             background: rgba(255, 255, 255, 0.3);
             color: var(--text);
         }
+        .form-control::placeholder {
+            color: #000000;
+        }
         .form-control:focus {
             border-color: var(--navy);
             box-shadow: 0 0 0 3px rgba(15,45,94,.08);
